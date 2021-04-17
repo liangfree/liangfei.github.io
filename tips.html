@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="../../static/img/myfavicon1.ico">
+    <title>提示信息-梁飞的小站</title>
+
+    <!-- JQuery 在线CDN baidu -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+    .tips-wrap  {margin: 15% auto 35px auto;}
+    .btn-wrap a {margin-right: 20px;}
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 offset-md-2">
+
+          <div class="tips-wrap">
+            <h3><small class="text-muted">梁飞的小站-登录提示：</small></h3>
+            {% if type == 'WrongCode' %}
+            <p class="lead display-4 text-danger">{{ tips_title }}</p>
+            {% elif type == 'NoCode' %}
+            <p class="lead display-4 text-primary">{{ tips_title }}</p>
+            {% elif type == 'NewUser' %}
+            <p class="lead display-4 text-success">{{ tips_title }}</p>
+            {% elif type == 'WrongMail' %}
+            <p class="lead display-4 text-danger">{{ tips_title }}</p>
+            {% endif %}
+            <h2><small class="text-muted">{{ tips_sub|safe }}</small></h2>
+          </div>
+
+          <div class="btn-wrap">
+            <a href="./login"><button type="button" id="btn-relogin" class="jum-btn btn btn-outline-primary btn-lg">重新登录(15秒)</button></a>
+            <a href="./"><button type="button" class="jum-btn btn btn-outline-secondary btn-lg">回到首页</button></a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script>
+  		$(document).ready(function(){
+        countDown();
+  		});
+
+
+      function countDown(){
+        var btn = $("#btn-relogin");
+        var time = 15;
+        var interval = setInterval(function(){
+          btn.html("重新登录(" + time + "秒)");
+          time = time - 1;
+          if (time == -1){
+            window.location.href = "./login";
+            clearInterval(interval);
+          }
+        }, 1000);
+      }
+
+
+  	</script>
+  </body>
+</html>
