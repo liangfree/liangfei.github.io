@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="../../static/img/myfavicon.ico">
 
-<title>首页-梁飞的小站</title>
+<title>liangfei's page</title>
 
 <!-- JQuery 在线CDN baidu -->
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -18,41 +17,308 @@
 	function progressSet(num) {
 		$(".my-progress-bar").animate({width: num}, "slow");
 	}
+	
+	function clock() {
+
+  var time = [0, 0];
+  var timeStr = "";
+
+  var timeCard = $(".time-card");
+  var timeText = $("#time-card-text");
+
+  setInterval(function() {
+    time[1]++;
+    if (time[1] == 60) {
+      time[0] ++;
+      time[1] = 0;
+      timeStr = getString(time);
+      numberPorter(timeStr, 0);
+      numberPorter(timeStr, 1);
+      timeText.text(time[0] + "分钟");
+    }
+    timeStr = getString(time);
+    numberPorter(timeStr, 2);
+    numberPorter(timeStr, 3);
+  }, 1000);
+
+
+  function getString(timeArray) {
+    if (timeArray[0] < 100) {
+      return addZero(timeArray[0]) + addZero(timeArray[1]);
+    }
+    else {
+      return "long";
+    }
+  }
+
+  function addZero(num) {
+    if (num < 10) {
+      return "0" + num.toString();
+    }
+    else {
+      return num.toString();
+    }
+  }
+
+  function numberPorter(string, n) {
+    timeCard.eq(n).children().first().text(string.charAt(n));
+  }
+}
+	
+	
+
+
 </script>
+
+<style type="text/css">
+.box-shadow:hover { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.my-progress {
+  position: fixed;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: #e9ecef;
+  z-index: 9;
+}
+.jum-btn {
+  margin-right: 5px;
+}
+.my-progress-bar {
+  width: 10%;
+  height: 2px;
+  padding: 0;
+  margin: 0;
+}
+.footer {
+  padding-bottom: 10px;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background-color: #e9ecef;
+}
+.time-card {
+  display: inline-block;
+  margin-right: 5px;
+  width: 47px;
+  height: 56px;
+  background-color: #fff;
+  color: #888;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+.time-card-group {
+  padding: 20px 0 10px 0;
+}
+.inline-block {
+  display: inline-block;
+  padding-left: 10px;
+}
+.colon-group {
+  display: inline-block;
+  margin-right: 5px;
+}
+.colon {
+  margin-top: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  background-color: #bbb;
+}
+
+.my-resume {
+  margin-bottom: 35px;
+  line-height: 40px;
+  background-color: #fff;
+  color: #555;
+  border-radius: 5px;
+  padding: 2rem;
+}
+.my-resume-head {
+  margin-top: 35px;
+  color: #999;
+}
+.footer-cr {
+  text-align: right;
+}
+
+/* .my-resume-content {
+  margin: 10px 30px;
+} */
+
+.my-photo {
+  height: 155px;
+}
+
+.my-resume-headlogo {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.my-resume-headlogo-tips {
+  margin-bottom: 10px;
+  color: #999;
+}
+
+.my-alert {
+  /* top: 12px; */
+  top: -300px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 80%;
+  position: fixed;
+  /* box-shadow: 0 .05rem .20rem rgba(0, 0, 0, .15); */
+  /* box-shadow: 0 0 13px 2px rgba(0, 0, 0, .18); */
+  z-index: 100;
+}
+
+.user-wrap {
+  color: #777;
+  /* margin-bottom: 5px; */
+  margin: 10px 0 5px 0;
+  /* background-color: green; */
+  width: 100%;
+}
+.user-more-infor {
+  font-size: 85%;
+}
+.user-more-infor span {
+  margin-left: 10px;
+}
+.user-more-infor a {
+  color: #777;
+}
+
+.confirm-alert-btn-wrap button {
+  margin-left: 12px;
+  margin-top: -2px;
+}
+.confirm-alert-btn-wrap {
+  float: right;
+}
+
+.user-logout-btn {
+  margin-left: 10px;
+  color: #007bff;
+}
+
+.resume-download-btn {
+  margin-top: 15px;
+}
+
+.my-breadcrumb {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 .05rem .10rem rgba(0, 0, 0, .10);
+  background-color: #fff;
+}
+
+
+
+@media screen and (max-width: 1200px) {
+  .footer-cr {
+    text-align: center;
+    line-height: 60px;
+  }
+  .jum-btn {
+    margin: 0 5px 13px 0;
+  }
+  .my-alert {
+    /* top: 12px; */
+    top: -300px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 80%;
+    position: fixed;
+    /* box-shadow: 0 .25rem .60rem rgba(0, 0, 0, .15); */
+    z-index: 100;
+  }
+}
+
+
+
+.mypanel {
+  margin-bottom: 35px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #fff
+}
+
+.editor {
+  /* margin:0 auto; */
+  /* margin-bottom: 35px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #fff */
+
+}
+.editor-tool {
+  /* margin-bottom: 5px; */
+  /* border-radius: 5px 5px 0 0; */
+}
+.editor-tool-content {
+  /* background-color: green; */
+}
+.editor-tool-submit {
+  /* background-color: red; */
+}
+.editor-text {
+  margin: 0 auto;
+  width: 98%;
+  height: 130px;
+  border-bottom: 1px solid #eee;
+  /* border-radius: 0 0 5px 5px; */
+}
+.editor-text-div {
+  /* margin-bottom: 35px; */
+  /* border-radius: 0 0 5px 5px; */
+}
+.editor-submit {
+  margin:0 auto;
+  padding: 15px 0 25px 0;
+}
+.editor-submit-tips {
+  padding-bottom: 10px;
+}
+
+
+
+.words-div {
+  /* padding: 10px; */
+}
+
+.words-head {
+  margin: 35px 0 15px 0;
+  color: #999;
+}
+.words-wrap {
+  margin-bottom: 30px;
+}
+.words-content {
+  padding-top: 20px;
+}
+.words-content-marginleft {
+  margin-left: 15px;
+}
+.words-content-text {
+  margin-top: 5px;
+}
+.words-content-tab-askbtn {
+  padding-top: 10px;
+}
+
+</style>
 
 <!-- Bootstrap-4 CSS文件 -->
 <!-- <link onload="progressSet('30%')" rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<!-- 自定义 CSS文件 -->
-<link onload="progressSet('50%')" rel="stylesheet" href="../../static/css/index.css">
-
-<!-- 自定义 JS文件 -->
-<script onload="progressSet('60%')" src="../../static/js/index.js"></script>
-
 </head>
 
 <body class="bg-light">
-
-	<!-- 进度条置顶 -->
-	<div class="my-progress">
-		<div class="my-progress-bar bg-primary"></div>
-	</div>
-
-	<!-- 退出弹窗提醒 -->
-	<div class="confirm-alert-div my-alert alert alert-light" id="confirm-alert-div" role="alert">
-		退出将清除您目前账号的<strong>身份验证信息</strong>，下次需手动登录。<strong>确认退出？</strong>
-		<div class="confirm-alert-btn-wrap">
-			<a href="./logout"><button type="button" class="btn btn-danger btn-sm">&nbsp;确认&nbsp;</button></a>
-			<button id="confirm-alert-cancel" type="button" class="btn btn-outline-secondary btn-sm" onclick="confirmAlert(1)">&nbsp;取消&nbsp;</button>
-		</div>
-	</div>
-
-	<!-- 通用提醒弹窗 -->
-	<div class="my-alert alert alert-success" id="alert-div" role="alert">
-		感谢反馈，反馈成功！
-	</div>
 
 
 	<!-- 首页巨幕 -->
@@ -82,7 +348,7 @@
 		  <p class="lead">
 				<div class="row">
 					<div class="col">
-				    <a href="../../static/梁飞的简历.pdf"><button type="button" class="jum-btn btn btn-outline-primary">下载我的简历</button></a>&nbsp;
+				    <a href="tips.html"><button type="button" class="jum-btn btn btn-outline-primary">下载我的简历</button></a>&nbsp;
 						<a href="./login"><button type="button" class="jum-btn btn btn-outline-primary">向我留言</button></a>&nbsp;
 						<button type="button" class="jum-btn btn btn-outline-primary" data-toggle="collapse" data-target="#contact-me" aria-expanded="false" aria-controls="#contact-me">联系我</button>
 					</div>
